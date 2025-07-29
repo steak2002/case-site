@@ -1,3 +1,65 @@
+# Project Overview
+
+## Tech Stack
+
+- **Frontend**: Next.js, React, Chakra UI, Framer Motion, Zustand
+- **Backend**: Supabase
+- **Testing**: Vitest, React Testing Library
+- **Language**: TypeScript
+- **Deployment**: Vercel
+
+## File Structure
+
+- **public/**: Static assets (images, fonts, icons, etc.)
+- **src/**
+    - **app/**: Next.js App Router pages and layouts
+        - `layout.tsx`: Root layout
+        - `page.tsx`: Root page
+        - `head.tsx`: Head metadata
+        - *(other route folders, e.g. `dashboard/`, `about/`, ...)*
+    - **features/**: Feature modules (frontend logic & UI)
+        - `feature1/`
+            - `model/`: Zustand stores, services, types, tests
+                - `store.ts`
+                - `service.ts`
+                - `types.ts`
+                - `store.test.ts`
+            - `ui/`: Components, page wrappers, styles
+                - `Feature1Page.tsx`
+                - `Feature1Component.tsx`
+            - `index.ts`: Barrel exports for easy imports
+        - `feature2/`
+        - ...
+    - **shared/**: Shared UI, hooks, utils used across features
+        - `components/`: Reusable components (Button, Modal, etc.)
+        - `hooks/`: Custom hooks
+        - `utils/`: Utility functions/helpers
+        - `styles/`: Shared styles/themes
+        - `types.ts`: Global TypeScript types
+    - **api/**: Next.js API routes (route handlers)
+        - `someModule/`
+            - `contract.ts`: Request/response types, validation schemas
+            - `routes.ts`: API route handlers (e.g., GET, POST)
+            - `index.ts`: Barrel exports
+        - `index.ts`: General API exports if needed
+    - **backend/**: Backend-only logic (business/data layer)
+        - `someService/`
+            - `repository.ts`: DB or external API interaction
+            - `service.ts`: Business logic / service layer
+            - `types.ts`: Types/interfaces specific to backend
+            - `test.ts`: Unit tests
+            - `index.ts`: Barrel exports
+        - `shared/`: Shared backend utilities & types
+- `.env.local`: Environment variables
+- `.gitignore`: Git ignore file
+- `.eslintrc.json`: ESLint config
+- `next.config.js`: Next.js config
+- `next-env.d.ts`: TypeScript environment definitions
+- `tsconfig.json`: TypeScript config with paths for aliases
+- `yarn.lock` / `package-lock.json`
+
+
+## Boilerplate
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
