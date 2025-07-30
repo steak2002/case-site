@@ -35,8 +35,8 @@ Created using create-next-app...
 ## Development Workflow
 
 ### 1. Contract
-- Create entity types in `inter-env/[domainName]/types.ts`
-- Define service contracts in `contract.ts`
+- Create shared entity types
+- Create service contracts
 - Add API response types
 
 ### 2. Domain
@@ -47,12 +47,12 @@ Created using create-next-app...
 - Register in service registry
 
 ### 3. API Routes
-- Implement HTTP handlers in `app/api/[domainName]/route.ts`
+- Implement HTTP handlers
 - Connect to domain services
 - Test endpoints
 
 ### 4. Frontend
-- Create page in `app/[page-route]/page.tsx`
+- Create page
 - Set up feature folder with model/ui structure
 - Implement and test Zustand store
 - Build UI components
