@@ -75,62 +75,29 @@
 
 ## Architecture
 
-
+```mermaid
 graph TB
-    subgraph Client
-        A[Browser]
-        B[UI Components]
-        C[Feature Layer]
-    end
+    %% Main components
+    Browser[**Browser**]
+    UI["**UI**<br/>(/app/page + /features)"]
+    API["**API Routes**<br/>(/app/api)"]
+    Domain["**Domain**<br/>(/domain/)"]
+    Data["Data<br/>(Supabase, other services)"]
+    Shared["Shared<br/>(/shared/contracts"]
+    
+    %% Direct connections with proper alignment
+    Browser --> UI
+    UI --> API
+    API --> Domain
+    Domain --> Data
+    
+    %% Type safety connections
+    Shared -.-> UI
+    Shared -.-> API
+    Shared -.-> Domain
+    
+```
 
-    subgraph Server
-        D[API Routes]
-        E[Domain Layer]
-        F[Repository Layer]
-    end
-
-    subgraph External
-        G[Supabase]
-    end
-
-    subgraph Shared
-        H[Inter-Env Contracts]
-    end
-
-    A -->|Renders| B
-    B -->|Uses| C
-    C -->|API Calls| D
-    C -.->|Type Safety| H
-    D -->|Uses| E
-    D -.->|Type Safety| H
-    E -->|Uses| F
-    E -.->|Type Safety| H
-    F -->|Queries| G
-
-    classDef clientNodes fill:#d4f1f9,stroke:#05728f,stroke-width:2px;
-    classDef serverNodes fill:#ffe6cc,stroke:#d79b00,stroke-width:2px;
-    classDef externalNodes fill:#d5e8d4,stroke:#82b366,stroke-width:2px;
-    classDef sharedNodes fill:#e1d5e7,stroke:#9673a6,stroke-width:2px;
-
-    class A,B,C clientNodes;
-    class D,E,F serverNodes;
-    class G externalNodes;
-    class H sharedNodes;
-
-- **Domain Layer**: Core business logic isolated from external concerns
-  - Services implement business rules
-  - Repositories abstract database operations
-
-- **API Layer**: Next.js API routes expose domain functionality as REST endpoints
-  - Type-safe contracts ensure consistent communication
-
-- **Feature Layer**: Frontend components organized by feature
-  - Each feature contains its own UI components and state management
-  - Zustand stores manage client-side state
-
-- **Shared Layer**: Cross-cutting concerns and utilities
-  - UI components, hooks, and utilities shared across features
-  - Theme configuration for consistent styling
 
 ## Boilerplate
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
