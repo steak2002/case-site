@@ -14,24 +14,10 @@ export interface ApiResponse<T> {
  * Defines the interface that any counter service must implement
  */
 export interface CounterServiceContract {
-    /**
-     * Get the current counter
-     * @returns The current counter entity or null if not found
-     */
-    getCount(): Promise<CounterEntity | null>;
 
-    /**
-     * Increment the counter by the specified amount
-     * @param incrementBy Amount to increment (defaults to 1)
-     * @returns The updated counter entity
-     */
+    getCount(): Promise<CounterEntity | null>;
     incrementCount(incrementBy?: number): Promise<CounterEntity>;
 }
-
-/**
- * Counter API Contract
- * Defines the HTTP API interface for counter operations
- */
 export interface CounterApiContract {
     /**
      * GET /api/counter
