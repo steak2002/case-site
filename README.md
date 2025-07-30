@@ -2,62 +2,135 @@
 
 ## Tech Stack
 
-- **Frontend**: Next.js, React, Chakra UI, Framer Motion, Zustand
-- **Backend**: Supabase
-- **Testing**: Vitest, React Testing Library
-- **Language**: TypeScript
-- **Deployment**: Vercel
+- Next.js, React, Chakra UI, Framer Motion, Zustand
+- Supabase
+- Vitest, React Testing Library
+- TypeScript
+- Vercel
 
 ## File Structure
 
 - **public/**: Static assets (images, fonts, icons, etc.)
+  - `favicon.ico`: Site favicon
 - **src/**
     - **app/**: Next.js App Router pages and layouts
-        - `layout.tsx`: Root layout
+        - `layout.tsx`: Root layout with providers
         - `page.tsx`: Root page
-        - `head.tsx`: Head metadata
-        - *(other route folders, e.g. `dashboard/`, `about/`, ...)*
-    - **features/**: Feature modules (frontend logic & UI)
-        - `feature1/`
-            - `model/`: Zustand stores, services, types, tests
-                - `store.ts`
-                - `service.ts`
-                - `types.ts`
-                - `store.test.ts`
-            - `ui/`: Components, page wrappers, styles
-                - `Feature1Page.tsx`
-                - `Feature1Component.tsx`
-            - `index.ts`: Barrel exports for easy imports
-        - `feature2/`
-        - ...
-    - **shared/**: Shared UI, hooks, utils used across features
-        - `components/`: Reusable components (Button, Modal, etc.)
-        - `hooks/`: Custom hooks
-        - `utils/`: Utility functions/helpers
-        - `styles/`: Shared styles/themes
-        - `types.ts`: Global TypeScript types
-    - **api/**: Next.js API routes (route handlers)
-        - `someModule/`
-            - `contract.ts`: Request/response types, validation schemas
-            - `routes.ts`: API route handlers (e.g., GET, POST)
-            - `index.ts`: Barrel exports
-        - `index.ts`: General API exports if needed
-    - **backend/**: Backend-only logic (business/data layer)
-        - `someService/`
-            - `repository.ts`: DB or external API interaction
+        - `providers.tsx`: Application providers (Chakra UI)
+        - `api/`: API route handlers
+            - `[domainName]/route.ts`: API endpoint implementation
+        - `[page-route]/`: Page routes
+            - `page.tsx`: Page component
+    - **domain/**: Server-side business logic
+        - `[domainName]/`: Domain module
+            - `repository.ts`: Database access layer
             - `service.ts`: Business logic / service layer
-            - `types.ts`: Types/interfaces specific to backend
-            - `test.ts`: Unit tests
+            - `types.ts`: Type definitions
             - `index.ts`: Barrel exports
-        - `shared/`: Shared backend utilities & types
-- `.env.local`: Environment variables
-- `.gitignore`: Git ignore file
-- `.eslintrc.json`: ESLint config
-- `next.config.js`: Next.js config
-- `next-env.d.ts`: TypeScript environment definitions
-- `tsconfig.json`: TypeScript config with paths for aliases
-- `yarn.lock` / `package-lock.json`
+        - `shared/`: Shared server-side utilities
+            - `services.ts`: Service registry
+            - `supabaseServer.ts`: Server-side Supabase client
+    - **features/**: Feature modules (frontend logic & UI)
+        - `[featureName]/`: Feature module
+            - `model/`: State management
+                - `store.ts`: Zustand store
+                - `types.ts`: Type definitions
+                - `service.ts`: Frontend services
+            - `ui/`: User interface components
+                - `Component.tsx`: Feature UI components
+            - `index.ts`: Barrel exports
+    - **inter-env/**: Shared types between client and server
+        - `[domainName]/`: Domain contracts
+            - `contract.ts`: API contract interfaces
+            - `types.ts`: Shared entity types
+        - `index.ts`: Barrel exports
+- `<project-root>`: configs, scripts, and other project files
 
+## Development Workflow
+
+### 1. Contract
+- Create entity types in `inter-env/[domainName]/types.ts`
+- Define service contracts in `contract.ts`
+- Add API response types
+
+### 2. Domain
+- Create service skeleton implementing contract
+- Write failing tests
+- Set up Supabase table
+- Implement repository and service
+- Register in service registry
+
+### 3. API Routes
+- Implement HTTP handlers in `app/api/[domainName]/route.ts`
+- Connect to domain services
+- Test endpoints
+
+### 4. Frontend
+- Create page in `app/[page-route]/page.tsx`
+- Set up feature folder with model/ui structure
+- Implement and test Zustand store
+- Build UI components
+- Connect components
+
+
+## Architecture
+
+
+graph TB
+    subgraph Client
+        A[Browser]
+        B[UI Components]
+        C[Feature Layer]
+    end
+
+    subgraph Server
+        D[API Routes]
+        E[Domain Layer]
+        F[Repository Layer]
+    end
+
+    subgraph External
+        G[Supabase]
+    end
+
+    subgraph Shared
+        H[Inter-Env Contracts]
+    end
+
+    A -->|Renders| B
+    B -->|Uses| C
+    C -->|API Calls| D
+    C -.->|Type Safety| H
+    D -->|Uses| E
+    D -.->|Type Safety| H
+    E -->|Uses| F
+    E -.->|Type Safety| H
+    F -->|Queries| G
+
+    classDef clientNodes fill:#d4f1f9,stroke:#05728f,stroke-width:2px;
+    classDef serverNodes fill:#ffe6cc,stroke:#d79b00,stroke-width:2px;
+    classDef externalNodes fill:#d5e8d4,stroke:#82b366,stroke-width:2px;
+    classDef sharedNodes fill:#e1d5e7,stroke:#9673a6,stroke-width:2px;
+
+    class A,B,C clientNodes;
+    class D,E,F serverNodes;
+    class G externalNodes;
+    class H sharedNodes;
+
+- **Domain Layer**: Core business logic isolated from external concerns
+  - Services implement business rules
+  - Repositories abstract database operations
+
+- **API Layer**: Next.js API routes expose domain functionality as REST endpoints
+  - Type-safe contracts ensure consistent communication
+
+- **Feature Layer**: Frontend components organized by feature
+  - Each feature contains its own UI components and state management
+  - Zustand stores manage client-side state
+
+- **Shared Layer**: Cross-cutting concerns and utilities
+  - UI components, hooks, and utilities shared across features
+  - Theme configuration for consistent styling
 
 ## Boilerplate
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
