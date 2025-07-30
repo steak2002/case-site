@@ -79,11 +79,11 @@
 graph TB
     %% Main components
     Browser[**Browser**]
-    UI["**UI**<br/>(/app/page + /features)"]
-    API["**API Routes**<br/>(/app/api)"]
-    Domain["**Domain**<br/>(/domain/)"]
-    Data["Data<br/>(Supabase, other services)"]
-    Shared["Shared<br/>(/shared/contracts"]
+    UI["**UI**<br/>/app/page + /features"]
+    API["**API Routes**<br/>/app/api"]
+    Domain["**Domain**<br/>/domain/"]
+    Data["Data<br/>Supabase, others"]
+    Shared["Shared<br/>/shared/contracts"]
     
     %% Direct connections with proper alignment
     Browser --> UI
