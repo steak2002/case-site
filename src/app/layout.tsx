@@ -44,8 +44,7 @@ export function ColorModeToggle() {
 
 const Links = [
   { name: 'Home', path: '/' },
-  { name: 'Counter', path: '/counter-page' },
-  { name: 'Ideas', path: '/ideas' },
+  { name: 'My New Page', path: '/my-new-page' },
 ];
 
 export function Navbar() {
