@@ -1,5 +1,5 @@
 import { supabaseServer } from "@/domain/shared/supabaseServer";
-import { CounterEntity } from "@/inter-env/count/types";
+import { CounterEntity } from "@/shared/contracts/count/types";
 import { CounterData } from "./types";
 
 export class CountRepository {

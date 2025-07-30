@@ -9,42 +9,32 @@
 - Vercel
 
 ## File Structure
+## File Structure
 
 - **public/**: Static assets (images, fonts, icons, etc.)
   - `favicon.ico`: Site favicon
+## File Structure
 - **src/**
-    - **app/**: Next.js App Router pages and layouts
-        - `layout.tsx`: Root layout with providers
-        - `page.tsx`: Root page
-        - `providers.tsx`: Application providers (Chakra UI)
-        - `api/`: API route handlers
-            - `[domainName]/route.ts`: API endpoint implementation
-        - `[page-route]/`: Page routes
-            - `page.tsx`: Page component
-    - **domain/**: Server-side business logic
-        - `[domainName]/`: Domain module
-            - `repository.ts`: Database access layer
-            - `service.ts`: Business logic / service layer
-            - `types.ts`: Type definitions
-            - `index.ts`: Barrel exports
-        - `shared/`: Shared server-side utilities
-            - `services.ts`: Service registry
-            - `supabaseServer.ts`: Server-side Supabase client
-    - **features/**: Feature modules (frontend logic & UI)
-        - `[featureName]/`: Feature module
-            - `model/`: State management
-                - `store.ts`: Zustand store
-                - `types.ts`: Type definitions
-                - `service.ts`: Frontend services
-            - `ui/`: User interface components
-                - `Component.tsx`: Feature UI components
-            - `index.ts`: Barrel exports
-    - **inter-env/**: Shared types between client and server
-        - `[domainName]/`: Domain contracts
-            - `contract.ts`: API contract interfaces
-            - `types.ts`: Shared entity types
-        - `index.ts`: Barrel exports
-- `<project-root>`: configs, scripts, and other project files
+  - **app/** - Next.js pages and API routes
+    - `api/[domainName]/route.ts` - API endpoints
+    - `[page-route]/page.tsx` - Page components
+  
+  - **domain/** - Server-side business logic
+    - `[domainName]/` - Domain modules
+      - `repository.ts` - Database access
+      - `service.ts` - Business logic
+    - `shared/services.ts` - Service registry
+  
+  - **features/** - Frontend components and state
+    - `[featureName]/` - Feature modules
+      - `model/store.ts` - Zustand state
+      - `ui/Component.tsx` - UI components
+  
+  - **shared/** - Cross-cutting concerns
+    - `theme/` - Chakra UI theme
+    - `contracts/[domainName]/` - Shared types
+  
+  - **tests/** - Test
 
 ## Development Workflow
 

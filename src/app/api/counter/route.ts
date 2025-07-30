@@ -3,7 +3,7 @@ import { CountService } from '@/domain/count';
 import {
     GetCounterResponse,
     IncrementCounterResponse
-} from '@/inter-env/count/contract';
+} from '@/shared/contracts/count/contract';
 import { serviceRegistry } from '@/domain/shared/serviceRegistry';
 
 

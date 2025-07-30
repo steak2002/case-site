@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { useCounterStore } from "../features/counter/model/store";
-import { CounterEntity } from "@/inter-env/count/types";
+import { CounterEntity } from "@/shared/contracts/count/types";
 
 // Mock global fetch
 global.fetch = vi.fn();

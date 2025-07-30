@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { CounterEntity } from "@/inter-env/count/types";
-import { GetCounterResponse, IncrementCounterResponse } from "@/inter-env/count/contract";
+import { CounterEntity } from "@/shared/contracts/count/types";
+import { GetCounterResponse, IncrementCounterResponse } from "@/shared/contracts/count/contract";
 
 
 export interface CounterStoreState {
@@ -41,8 +41,6 @@ export const useCounterStore = create<CounterStoreState & CounterStoreActions>((
             const response = await fetch('/api/counter', {
                 method: 'POST',
             });
-
-
 
             const result = await response.json() as IncrementCounterResponse;
 

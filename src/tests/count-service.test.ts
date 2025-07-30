@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { CountService } from "@/domain/count/service";
-import { CounterEntity } from "@/inter-env/count/types";
+import { CounterEntity } from "@/shared/contracts/count/types";
 
 // Create a mock counter for testing
 const mockCounter: CounterEntity = {

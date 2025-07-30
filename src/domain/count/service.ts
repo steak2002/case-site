@@ -1,4 +1,4 @@
-import { CounterEntity } from "@/inter-env/count/types";
+import { CounterEntity } from "@/shared/contracts/count/types";
 import { CounterData } from "./types";
 import { CountRepository } from "./repository";
 import { CounterServiceContract } from "@/inter-env";
