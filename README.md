@@ -3,17 +3,12 @@ Created using create-next-app...
 
 ## Tech Stack
 
-- Next.js, React, Chakra UI, Framer Motion, Zustand
+- Next.js, React, Chakra UI, Zustand
 - Supabase
-- Vitest, React Testing Library
+- Vitest
 - TypeScript
 - Vercel
 
-## File Structure
-## File Structure
-
-- **public/**: Static assets (images, fonts, icons, etc.)
-  - `favicon.ico`: Site favicon
 ## File Structure
 - **src/**
   - **app/** - Next.js pages and API routes
