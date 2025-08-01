@@ -15,48 +15,22 @@ Created using create-next-app...
     - `api/[domainName]/route.ts` - API endpoints
     - `[page-route]/page.tsx` - Page components
   
+  - **features/** - Frontend components and state
+    - `[featureName]/` - Feature modules
+      - `model/store.ts` - Zustand state
+      - `ui/Component.tsx` - UI components
+
   - **domain/** - Server-side business logic
     - `[domainName]/` - Domain modules
       - `repository.ts` - Database access
       - `service.ts` - Business logic
     - `shared/services.ts` - Service registry
   
-  - **features/** - Frontend components and state
-    - `[featureName]/` - Feature modules
-      - `model/store.ts` - Zustand state
-      - `ui/Component.tsx` - UI components
-  
   - **shared/** - Cross-cutting concerns
     - `theme/` - Chakra UI theme
     - `contracts/[domainName]/` - Shared types
   
   - **tests/** - Test
-
-## Development Workflow
-
-### 1. Contract
-- Create shared entity types
-- Create service contracts
-- Add API response types
-
-### 2. Domain
-- Create service skeleton implementing contract
-- Write failing tests
-- Set up Supabase table
-- Implement repository and service
-- Register in service registry
-
-### 3. API Routes
-- Implement HTTP handlers
-- Connect to domain services
-- Test endpoints
-
-### 4. Frontend
-- Create page
-- Set up feature folder with model/ui structure
-- Implement and test Zustand store
-- Build UI components
-- Connect components
 
 
 ## Architecture
