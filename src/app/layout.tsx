@@ -14,11 +14,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Flex minH="100vh" direction="column">
-            <Navbar />
-            <Box as="main" flex="1">
-              {children}
-            </Box>
+          <Flex minH="100vh" height="100vh" direction="column">
+            {children}
           </Flex>
         </Providers>
       </body>
@@ -43,8 +40,8 @@ export function ColorModeToggle() {
 
 
 const Links = [
-  { name: 'Home', path: '/' },
-  { name: 'My New Page', path: '/my-new-page' },
+  { name: 'Copenhagen', path: '/copenhagen' },
+  { name: 'Odense', path: '/odense' },
 ];
 
 export function Navbar() {
@@ -64,7 +61,6 @@ export function Navbar() {
           onClick={isOpen ? onClose : onOpen}
         />
         <HStack spacing={8} alignItems={'center'}>
-          <Box fontWeight="bold">Case Site</Box>
           <HStack
             as={'nav'}
             spacing={4}

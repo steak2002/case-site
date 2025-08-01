@@ -1,5 +1,0 @@
-// MyServiceContract
-
-// MyApiContract
-
-// MyApiResponseTypes

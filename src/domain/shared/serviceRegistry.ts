@@ -1,5 +1,6 @@
+import { WeatherService } from "../weather"
 
 
 export const serviceRegistry = {
-    //myservice = MyService.getInstance();
+    weatherService: WeatherService.getInstance()
 };

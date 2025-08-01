@@ -1,16 +1,20 @@
 'use client'
 
+import { Location } from "@/features/weather/ui/components/Location";
 import {
   VStack,
   Flex,
+  useColorMode,
 } from "@chakra-ui/react";
+import { ColorModeToggle } from "./layout";
+import { CurrentWeather } from "@/features/weather/ui/components/CurrentWeather";
+import ForecastTabBar from "@/features/weather/ui/components/ForecastTabBar";
+import { WeatherDescription } from "@/features/weather/ui/components/WeatherDescription";
+import { useState } from "react";
+import { Forecast } from "@/features/weather/ui/components/Forecast";
+import { WeatherView } from "@/features/weather/ui/views/WeatherView";
 
 export default function Home() {
-  return (
-    <Flex minH="100vh" direction="column" justify="space-between" align="center">
-      <VStack as="main" spacing={8} w="full" maxW="lg" align="center" flex="1" py={8} px={4}>
-
-      </VStack>
-    </Flex>
-  );
+  return <WeatherView />;
+  // return (
 }
